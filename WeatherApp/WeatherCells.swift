@@ -3,11 +3,9 @@ import SnapKit
 
 final class CurrentWeatherCell: UITableViewCell {
     private let todayLabel: UILabel = {
-        let today = Date()
         let label = UILabel()
         label.font = .systemFont(ofSize: 13, weight: .medium)
         label.textColor = .systemGray
-        label.text = "Сегодня \(dateFormatter.string(from: Date()))"
         return label
     }()
 
@@ -65,6 +63,7 @@ final class CurrentWeatherCell: UITableViewCell {
     }
 
     func configure(with weather: CurrentWeather, name: String) {
+        todayLabel.text = "Сегодня \(dateFormatter.string(from: Date()))"
         cityLabel.text = name
         tempLabel.text = String("\(weather.tempC)\u{2103}")
         conditionLabel.text = weather.condition.text
