@@ -170,7 +170,7 @@ final class DailyForecastCell: UITableViewCell {
     func configure(with forecast: ForecastDay) {
         let date = Date(timeIntervalSince1970: forecast.dateEpoch)
         dateLabel.text = dateFormatter.string(from: date)
-        tempLabel.text = "\(Int(forecast.day.mintempC))\u{2103} / \(Int(forecast.day.maxtempC))\u{2103}"
+        tempLabel.text = "\(Int(forecast.day.mintempC.rounded()))\u{2103} / \(Int(forecast.day.maxtempC.rounded()))\u{2103}"
         if let url = URL(string: "https:\(forecast.day.condition.icon)") {
             iconView.load(url: url)
         } else {
@@ -229,7 +229,7 @@ final class HourView: UIView {
     func configure(time: String, temp: Double, iconString: String) {
         let hour = time.components(separatedBy: " ").last ?? time
         timeLabel.text = hour
-        tempLabel.text = "\(Int(temp))\u{2103}"
+        tempLabel.text = "\(Int(temp.rounded()))\u{2103}"
         if let iconURL = URL(string: "https:\(iconString)") {
             iconView.load(url: iconURL)
         }
